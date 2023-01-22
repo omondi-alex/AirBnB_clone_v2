@@ -3,7 +3,6 @@
 import os
 from sqlalchemy import Column, Float, ForeignKey, Integer, String, Table
 from sqlalchemy.orm import relationship
-
 from models.base_model import BaseModel, Base
 from models.review import Review
 from models.amenity import Amenity
@@ -27,6 +26,7 @@ place_amenity = Table(
         primary_key=True
     )
 )
+
 """Represents the many to many relationship table
 between Place and Amenity records.
 """
@@ -65,6 +65,7 @@ class Place(BaseModel, Base):
     longitude = Column(
         Float, nullable=True
     ) if os.getenv('HBNB_TYPE_STORAGE') == 'db' else 0.0
+
     amenity_ids = []
     reviews = relationship(
         'Review',
